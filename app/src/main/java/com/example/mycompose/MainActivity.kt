@@ -37,19 +37,25 @@ import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.mycompose.repo.PersonRepo
+import com.example.mycompose.screens.SetupNavGraph
 import com.example.mycompose.ui.theme.MyComposeTheme
 import com.example.mycompose.ui.theme.Shapes
 import com.example.mycompose.ui.theme.Typography
 
 class MainActivity : ComponentActivity() {
+    lateinit var navController: NavHostController
+
     @OptIn(ExperimentalFoundationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MyComposeTheme {
                 // A surface container using the 'background' color from the theme
-                Indicator()
+                navController = rememberNavController()
+                SetupNavGraph(navHostController = navController)
             }
         }
     }
